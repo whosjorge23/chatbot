@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ChatBot Test</title>
+
+	<!-- for mobile screens -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- stylesheets are conveniently separated into components -->
+	<link rel="stylesheet" media="all" href="../component/styles/setup.css">
+	<link rel="stylesheet" media="all" href="../component/styles/says.css">
+	<link rel="stylesheet" media="all" href="../component/styles/reply.css">
+	<link rel="stylesheet" media="all" href="../component/styles/typing.css">
+	<link rel="stylesheet" media="all" href="../component/styles/input.css">
+	<style>
+	body {
+		background: #dcdde0;
+	}
+	.bubble-container {
+		height: 100vh;
+	}
+	</style>
+</head>
+<body>
+
+<!-- container element for chat window -->
+<div id="chat"></div>
+
+<!-- import the JavaScript file -->
+<script src="../component/Bubbles.js"></script>
+<script>
+// initialize by constructing a named function...
+var chatWindow = new Bubbles(
+  document.getElementById("chat"), // ...passing HTML container element...
+  "chatWindow" // ...and name of the function as a parameter
+)
+
+var convo = {
+  ice: {
+    says: ["Hi!", "Are you ready for the test?"],
+    reply: [
+      {
+        question: "YES",
+        answer: "yes"
+      },
+      {
+        question: "NO",
+        answer: "no"
+      }
+    ]
+  },
+  yes: {
+    says: ["Where is based the HQ of Apple?"],
+    reply: [
+      {
+        question: "Mountain View",
+        answer: "wrong"
+      },
+      {
+        question: "Cupertino",
+        answer: "cupertino"
+      }
+    ]
+  },
+  no: {
+    says: ["Goodbye, See Ya Soon 👋"],
+  },
+  wrong: {
+    says: [
+    "W-R-O-N-G 👎",
+    "<img src=https://media.giphy.com/media/4OJFCEeGzYGs0/giphy.gif>",
+    ]
+  },
+  cupertino: {
+    says: [
+    "R-I-G-H-T 👍",
+    "<img src=https://media.giphy.com/media/3o7bu4G19uhzAf1DYQ/giphy.gif>",
+    "...",
+    "What is the name of the Amazon's CEO?",
+    ],
+    reply: [
+      {
+        question: "Elon Musk",
+        answer: "wrong"
+      },
+      {
+        question: "Jeff Besos",
+        answer: "jeff-besos"
+      },
+      {
+        question: "Jack Dorsey",
+        answer: "wrong"
+      },
+      {
+        question: "Mark Zuckerberg",
+        answer: "wrong"
+      },
+    ]
+  },
+  "jeff-besos": {
+    says: [
+      "R-I-G-H-T 👍",
+      "<img src=https://media.giphy.com/media/3o7bu4G19uhzAf1DYQ/giphy.gif>",
+      "...",
+      "What is the name of the framework that use Facebook?",
+    ],
+    reply: [
+      {
+        question: "Angular",
+        answer: "wrong"
+      },
+      {
+        question: "Django",
+        answer: "wrong"
+      },
+      {
+        question: "React",
+        answer: "react"
+      },
+      {
+        question: "Wordpress",
+        answer: "wrong"
+      },
+    ]
+  },
+  react: {
+    says: [
+    "R-I-G-H-T 👍",
+    "<img src=https://media.giphy.com/media/3o7bu4G19uhzAf1DYQ/giphy.gif>",
+    ],
+  },
+  "no-name": {
+    says: ["Inserisci il nome e cognome di tua/o figlia/o","Esempio:","Mario Rossi","o","mario rossi"],
+    reply: [
+      {
+        question: "Inserici",
+        answer: "nameFunction"
+      }
+    ]
+  },
+}
+
+// this function is called when user asks for banana
+nameFunction = function() {
+  var name = prompt("Inserisci il nome?")
+  if (name === 'Peter Parker'|| name === 'peter parker') {
+    chatWindow.talk(convo, "peter-parker")
+  }else if (name === 'Bruce Banner' || name === 'bruce banner') {
+    chatWindow.talk(convo, "bruce-banner")
+  }else if (name === 'Tony Stark' || name === 'tony stark') {
+    chatWindow.talk(convo, "tony-stark")
+  }else {
+    chatWindow.talk(convo, "no-name")
+  }
+}
+
+// `.talk()` will get your bot to begin the conversation
+chatWindow.talk(convo)
+
+</script>
+</body>
